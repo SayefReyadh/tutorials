@@ -1,5 +1,6 @@
-# iGraphics-Tutorial-in-Bangla
+# SayefReyadh - Programming Made Simple
 
-Youtube Link : https://goo.gl/ZumHbp
+Sayef Reyadh - Programming Made Simple Hi, myself Sayef, this is my channel about Computer Programming. I make different videos of various cse related topics which will be helpful for academic purpose and those who are doing programming contest. 
 
-All the charcters are copyrighted to their rightful owner it cannot be used for commercial purpose. 
+Page : https://www.facebook.com/Sayef.Reyadh.Programming.Made.Simple 
+Group : https://www.facebook.com/groups/SayefReyadh
