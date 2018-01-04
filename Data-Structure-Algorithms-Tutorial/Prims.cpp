@@ -1,3 +1,7 @@
+/// © Sayef Reyadh
+/// Programming Made Simple
+/// youtube.com/SayefReyadh
+
 #include<bits/stdc++.h>
 using namespace std;
 #define MX 100
