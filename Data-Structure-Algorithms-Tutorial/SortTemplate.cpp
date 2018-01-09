@@ -12,17 +12,6 @@ int num[MX];
 vector <int> v;
 
 
-bool cmp(bInfo lhs, bInfo rhs)
-{
-    if(lhs.id < rhs.id)
-        return lhs.id < rhs.id;
-    else if(lhs.meritPosition > rhs.meritPosition)
-        return lhs.meritPosition > rhs.meritPosition;
-    else
-        return false;
-}
-
-
 
 struct bInfo
 {
@@ -36,6 +25,18 @@ struct bInfo
     }
 
 };
+
+bool cmp(bInfo lhs, bInfo rhs)
+{
+    if(lhs.id < rhs.id)
+        return lhs.id < rhs.id;
+    else if(lhs.meritPosition > rhs.meritPosition)
+        return lhs.meritPosition > rhs.meritPosition;
+    else
+        return false;
+}
+
+
 
 bool operator < (bInfo lhs, bInfo rhs)
 {
