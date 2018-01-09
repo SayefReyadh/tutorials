@@ -18,7 +18,9 @@ struct bInfo
     int id;
     string name;
     int meritPosition;
-
+    
+    /// operator method overload 
+    /// here the sort is in asscending order
     bool operator < (const bInfo &var) const
     {
         return id < var.id;
@@ -26,6 +28,9 @@ struct bInfo
 
 };
 
+
+///most used cmp function format
+/// here the sort is in asscending order
 bool cmp(bInfo lhs, bInfo rhs)
 {
     if(lhs.id < rhs.id)
@@ -36,8 +41,8 @@ bool cmp(bInfo lhs, bInfo rhs)
         return false;
 }
 
-
-
+/// operator method overload 
+/// here the sort is in asscending order
 bool operator < (bInfo lhs, bInfo rhs)
 {
     return lhs.id < rhs.id;
