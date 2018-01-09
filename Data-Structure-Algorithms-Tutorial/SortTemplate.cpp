@@ -14,10 +14,10 @@ vector <int> v;
 
 bool cmp(bInfo lhs, bInfo rhs)
 {
-    if(lhs.meritPosition > rhs.meritPosition)
-        return lhs.meritPosition > rhs.meritPosition;
-    else if(lhs.id < rhs.id)
+    if(lhs.id < rhs.id)
         return lhs.id < rhs.id;
+    else if(lhs.meritPosition > rhs.meritPosition)
+        return lhs.meritPosition > rhs.meritPosition;
     else
         return false;
 }
