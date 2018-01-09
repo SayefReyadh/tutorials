@@ -1,4 +1,4 @@
-/// © Sayef Reyadh
+/// Â© Sayef Reyadh
 /// Programming Made Simple
 /// youtube.com/SayefReyadh
 
@@ -11,25 +11,17 @@ using namespace std;
 int num[MX];
 vector <int> v;
 
-void randomNumberGenerator(int n)
-{
-    for(int i = 0 ; i < n ; i++)
-    {
-        num[i] = rand()%200;
-        v.push_back(num[i]);
-    }
 
+bool cmp(bInfo lhs, bInfo rhs)
+{
+    if(lhs.meritPosition > rhs.meritPosition)
+        return lhs.meritPosition > rhs.meritPosition;
+    else if(lhs.id < rhs.id)
+        return lhs.id < rhs.id;
+    else
+        return false;
 }
 
-void showNumbers(int n)
-{
-    for(int i = 0 ; i < n ; i++)
-    {
-        ///cout << num[i] << " ";
-        cout << v[i] << " ";
-    }
-    cout << endl;
-}
 
 
 struct bInfo
@@ -55,10 +47,7 @@ bool cmp2(const bInfo &lhs, const bInfo &rhs)
     return lhs.id < rhs.id;
 }
 
-bool cmp(bInfo lhs, bInfo rhs)
-{
-    return lhs.id < rhs.id;
-}
+
 
 int n;
 bInfo info[10];
@@ -80,20 +69,40 @@ void outputFile()
     }
 }
 
+void randomNumberGenerator(int n)
+{
+    for(int i = 0 ; i < n ; i++)
+    {
+        num[i] = rand()%200;
+        v.push_back(num[i]);
+    }
+
+}
+
+void showNumbers(int n)
+{
+    for(int i = 0 ; i < n ; i++)
+    {
+        ///cout << num[i] << " ";
+        cout << v[i] << " ";
+    }
+    cout << endl;
+}
+
 
 int main()
 {
 
-    int n = 10;
-    randomNumberGenerator(n);
-    showNumbers(n);
-    sort(v.begin(), v.end());
-    showNumbers(n);
+//    int n = 10;
+//    randomNumberGenerator(n);
+//    showNumbers(n);
+//    sort(v.begin(), v.end());
+//    showNumbers(n);
 
     freopen("i.txt", "r", stdin);
     cin >> n;
     inputFile();
-    sort(info, info+n);
+    sort(info, info+n, cmp);
     outputFile();
 }
 
