@@ -5,6 +5,7 @@ maxResults : 100
 playlistId : id
 fields : items(snippet(resourceId/videoId,title))
 Generate the JSON Data and paste it in input.txt
+API : https://console.developers.google.com/apis/credentials?project=youtubedatafetch&folder&organizationId
 */
 
 #include<bits/stdc++.h>
