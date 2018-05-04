@@ -1,0 +1,55 @@
+Using Machine Learning to Understand Changes in How Youth Discuss Bullying With Celebrities on Social Media
+https://dl.acm.org/citation.cfm?id=3183694
+
+Abstract 
+
+This study combines social science and machine learning methods to address three goals related to how individuals engage with celebrities on the topic of bullying. 1) Do the perceived bullying roles of celebrities change over time? 2) If bullying roles change over time what causes the shift- a specific event, a retweet phenomenon, or an unrelated event? 3) When roles change how long is the change for and does it differ by combination of roles or type of celebrity? It is critical to understand youth's bullying behaviors in relation to celebrities since social media is a space that may promote well-being around the topic of bullying and Twitter users frequently reach out to celebrities about bullying in both positive and negative ways.
+
+All 3,468,784 English language posts mentioning a top celebrity user within any post that contained a bullying keyword between January 1, 2012 and December 31, 2014 were collected from the Twitter streaming API. Humans annotated a subset of bullying tweets that mentioned any of the celebrity users to determine the bullying role of the celebrity (Xu, 2015). The roles were advocate, bully, confidant, other, requested advocate, and victim. A model was trained to automatically classify the celebrity role for the corpus of tweets. The annotated tweets were used as training data to train a support vector machine. Each tweet was represented by a vector of word counts known as a bag-of-words (BOW) representation with unigram (a single letter or word token) and bigram (two consecutive letter or word tokens) features (Zhu, Goldberg, Rabbat, & Nowak, 2008). The class label is the bullying role. The trained support vector machine was applied to all tweets.
+
+Findings indicate that roles do change for the majority of celebrities. However, most of the role changes are short term and triggered by statements made by the celebrity or retweets. Combining methods from two disciplines allowed for the use of massive amounts of real-world, real-time data about bullying. This study exemplifies how technology can be used to advance multiple areas of scientific research and has broad implications.
+
+
+
+Detection of Political Manipulation in Online Communities through Measures of Effort and Collaboration
+https://dl.acm.org/citation.cfm?id=2767134
+
+
+Online social media allow users to interact with one another by sharing opinions, and these opinions have a critical impact on the way readers think and behave. Accordingly, an increasing number of <i>manipulators</i> deliberately spread messages to influence the public, often in an organized manner. In particular, political manipulation—manipulation of opponents to win political advantage—can result in serious consequences: antigovernment riots can break out, leading to candidates’ defeat in an election. A few approaches have been proposed to detect such manipulation based on the level of social interaction (i.e., manipulators actively post opinions but infrequently befriend and reply to other users). However, several studies have shown that the interactions can be forged at a low cost and thus may not be effective measures of manipulation.
+
+To go one step further, we collect a dataset for real, large-scale political manipulation, which consists of opinions found on Internet forums. These opinions are divided into manipulators and nonmanipulators. Using this collection, we demonstrate that manipulators inevitably work hard, in teams, to quickly influence a large audience. With this in mind, it could be said that a high level of collaborative efforts strongly indicates manipulation. For example, a group of manipulators may jointly post numerous opinions with a consistent theme and selectively recommend the same, well-organized opinion to promote its rank. We show that the effort measures, when combined with a supervised learning algorithm, successfully identify greater than 95% of the manipulators. We believe that the proposed method will help system administrators to accurately detect manipulators in disguise, significantly decreasing the intensity of manipulation.
+
+
+
+What is Your Data Silhouette?: Raising Teen Awareness of their Data Traces in Social Media
+https://dl.acm.org/citation.cfm?id=3097312
+
+Social and technical challenges in parenting teens' social media use
+https://dl.acm.org/citation.cfm?id=1979422
+
+Feelbook: A Social Media App for Teens Designed to Foster Positive Online Behavior and Prevent Cyberbullying
+https://dl.acm.org/citation.cfm?id=2892398
+
+Tracking and identification of suspicious and abnormal behaviors using supervised machine learning technique
+https://dl.acm.org/citation.cfm?id=1523124
+
+Third-wave livestreaming: teens' long form selfie
+https://dl.acm.org/citation.cfm?id=3098540
+
+Teens are from mars, adults are from venus: analyzing and predicting age groups with behavioral characteristics in instagram
+https://dl.acm.org/citation.cfm?id=2908160
+
+What do teens ask their online social networks?: social search practices among high school students
+https://dl.acm.org/citation.cfm?id=2531723
+
+Teens Engage More with Fewer Photos: Temporal and Comparative Analysis on Behaviors in Instagram
+https://dl.acm.org/citation.cfm?id=2914602
+
+Solution to Detect, Classify, and Report Illicit Online Marketing and Sales of Controlled Substances via Twitter: Using Machine Learning and Web Forensics to Combat Digital Opioid Access
+https://www.jmir.org/2018/4/e10029/
+
+Multi-class machine classification of suicide-related communication on Twitter
+https://www.sciencedirect.com/science/article/pii/S2468696417300605
+
+Detecting suicidality on Twitter
+https://www.sciencedirect.com/science/article/pii/S2214782915000160
