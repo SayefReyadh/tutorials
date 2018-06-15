@@ -12,16 +12,15 @@
 /* GLUT 3.7 now tries to avoid including <windows.h>
    to avoid name space pollution, but Win32's <GL/gl.h> 
    needs APIENTRY and WINGDIAPI defined properly. */
-# if defined(__BORLANDC__) && defined(__cplusplus)
+# if 0
    /* This would put tons of macros and crap in our clean name space. */
 #  define  WIN32_LEAN_AND_MEAN
 #  include <windows.h>
-#  include <stdlib.h>
 # else
    /* XXX This is from Win32's <windef.h> */
 #  ifndef APIENTRY
 #   define GLUT_APIENTRY_DEFINED
-#   if (_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED) || defined(__BORLANDC__) || defined(__MINGW32__)   
+#   if (_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED) || defined(__BORLANDC__)
 #    define APIENTRY    __stdcall
 #   else
 #    define APIENTRY
@@ -138,9 +137,7 @@ extern "C" {
 
 #if defined(_WIN32)
 # ifndef GLUT_BUILDING_LIB
-#if ! (defined(__BORLANDC__) && defined(__cplusplus))
 extern _CRTIMP void __cdecl exit(int);
-#endif
 # endif
 #else
 /* non-Win32 case. */
