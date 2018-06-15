@@ -35,6 +35,7 @@ void iKeyboard(unsigned char);
 void iSpecialKeyboard(unsigned char);
 void iMouseMove(int, int);
 void iMouse(int button, int state, int x, int y);
+void iPassiveMouseMove(int, int);
 
 static void  __stdcall iA0(HWND, unsigned int, unsigned int, unsigned long){ if (!iAnimPause[0])iAnimFunction[0](); }
 static void  __stdcall iA1(HWND, unsigned int, unsigned int, unsigned long){ if (!iAnimPause[1])iAnimFunction[1](); }
@@ -94,11 +95,11 @@ void iResumeTimer(int index){
 //  filename - name of the BMP file
 //  ignoreColor - A specified color that should not be rendered. If you have an
 //                image strip that should be rendered on top of another back
-//                ground image, then the background of the image strip should 
+//                ground image, then the background of the image strip should
 //                not get rendered. Use the background color of the image strip
 //                in ignoreColor parameter. Then the strip's background does
-//                not get rendered. 
-//                
+//                not get rendered.
+//
 //                To disable this feature, put -1 in this parameter
 //
 void iShowBMP2(int x, int y, char filename[], int ignoreColor)
@@ -137,6 +138,106 @@ void iShowBMP(int x, int y, char filename[])
 	iShowBMP2(x, y, filename, -1 /* ignoreColor */);
 }
 
+
+unsigned int iLoadImage(char filename[])
+{
+	int width, height, bpp;
+
+	unsigned int texture;
+
+	BYTE* data(0);
+	data = stbi_load(filename, &width, &height, &bpp, 4);
+
+	//glEnable(GL_TEXTURE_2D);
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D,
+		0,
+		GL_RGBA,
+		width, height,
+		0,
+		GL_RGBA,
+		GL_UNSIGNED_BYTE,
+		data);
+
+	stbi_image_free(data);
+
+	return texture;
+}
+
+void iShowImage(int x, int y, int width, int height, unsigned int texture)
+{
+
+	//unsigned int texture;
+
+
+	//int width, height, bpp;
+	/*
+	BYTE* data(0);
+	data = stbi_load(filename, &width, &height, &bpp, 4);
+
+
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexImage2D(GL_TEXTURE_2D,
+				 0,
+			     GL_RGBA,
+				 width, height,
+				 0,
+				 GL_RGBA,
+				 GL_UNSIGNED_BYTE,
+				 data);
+
+	stbi_image_free(data);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	*/
+
+	//width = 100;
+	//height = 100;
+	glEnable(GL_TEXTURE_2D);
+
+
+
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+	//glPushMatrix();
+	//glColor3f(1.0f, 1.0f, 1.0f);
+
+	glBegin(GL_QUADS);
+
+		glTexCoord2f(0, 0);
+		glVertex2f(x, y);
+
+		glTexCoord2f(1, 0);
+		glVertex2f(x + width, y);
+
+		glTexCoord2f(1, -1);
+		glVertex2f(x + width, y+height);
+
+		glTexCoord2f(0, -1);
+		glVertex2f(x, y + height);
+
+	glEnd();
+	//glPopMatrix();
+
+	glDisable(GL_TEXTURE_2D);
+
+}
+
+
 void iGetPixelColor(int cursorX, int cursorY, int rgb[])
 {
 	GLubyte pixel[3];
@@ -147,7 +248,7 @@ void iGetPixelColor(int cursorX, int cursorY, int rgb[])
 	rgb[1] = pixel[1];
 	rgb[2] = pixel[2];
 
-	//printf("%d %d %d\n",pixel[0],pixel[1],pixel[2]);   
+	//printf("%d %d %d\n",pixel[0],pixel[1],pixel[2]);
 }
 
 void iText(GLdouble x, GLdouble y, char *str, void* font = GLUT_BITMAP_8_BY_13)
@@ -325,6 +426,43 @@ void iFilledEllipse(double x, double y, double a, double b, int slices = 100)
 	glEnd();
 }
 
+//
+// Rotates the co-ordinate system
+// Parameters:
+//  (x, y) - The pivot point for rotation
+//  degree - degree of rotation
+//
+// After calling iRotate(), evrey subsequent rendering will
+// happen in rotated fashion. To stop rotation of subsequent rendering,
+// call iUnRotate(). Typical call pattern would be:
+//      iRotate();
+//      Render your objects, that you want rendered as rotated
+//      iUnRotate();
+//
+void iRotate(double x, double y, double degree)
+{
+	// push the current matrix stack
+	glPushMatrix();
+
+	//
+	// The below steps take effect in reverse order
+	//
+
+	// step 3: undo the translation
+	glTranslatef(x, y, 0.0);
+
+	// step 2: rotate the co-ordinate system across z-axis
+	glRotatef(degree, 0, 0, 1.0);
+
+	// step 1: translate the origin to (x, y)
+	glTranslatef(-x, -y, 0.0);
+}
+
+void iUnRotate()
+{
+	glPopMatrix();
+}
+
 void iSetColor(double r, double g, double b)
 {
 	double mmx;
@@ -400,6 +538,15 @@ void mouseHandlerFF(int button, int state, int x, int y)
 	iMouseY = iScreenHeight - y;
 
 	iMouse(button, state, iMouseX, iMouseY);
+
+	glFlush();
+}
+
+void passiveMouseHandlerFF(int mx, int my)
+{
+	iMouseX = mx;
+	iMouseY = iScreenHeight - my;
+	iPassiveMouseMove(iMouseX, iMouseY);
 
 	glFlush();
 }
