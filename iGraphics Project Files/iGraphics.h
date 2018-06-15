@@ -22,6 +22,9 @@
 #include "glaux.h"
 #include <string>
 
+# define STB_IMAGE_IMPLEMENTATION
+# include "stb_image.h"
+
 int iScreenHeight, iScreenWidth;
 int iMouseX, iMouseY;
 int ifft = 0;
